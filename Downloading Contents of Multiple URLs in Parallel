@@ -1,0 +1,10 @@
+function fetchUrls(urls) {
+    const fetchPromises = urls.map(url => fetch(url).then(response => response.text()));
+    return Promise.all(fetchPromises);
+}
+
+// Example usage:
+const urls = ['https://jsonplaceholder.typicode.com/posts/1', 'https://jsonplaceholder.typicode.com/posts/2'];
+fetchUrls(urls)
+    .then(contents => console.log(contents))
+    .catch(error => console.error(error));
