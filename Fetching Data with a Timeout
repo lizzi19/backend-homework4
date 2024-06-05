@@ -1,0 +1,23 @@
+function fetchWithTimeout(url, timeout) {
+    return new Promise((resolve, reject) => {
+        const timer = setTimeout(() => reject(new Error('Request timed out')), timeout);
+
+        fetch(url)
+            .then(response => {
+                clearTimeout(timer);
+                if (!response.ok) {
+                    reject(new Error('Network response was not ok'));
+                }
+                resolve(response.json());
+            })
+            .catch(error => {
+                clearTimeout(timer);
+                reject(error);
+            });
+    });
+}
+
+// Example usage:
+fetchWithTimeout('https://jsonplaceholder.typicode.com/posts/1', 5000)
+    .then(data => console.log(data))
+    .catch(error => console.error(error));
