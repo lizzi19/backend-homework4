@@ -1,0 +1,32 @@
+async function performAsyncOperations() {
+    try {
+        const result1 = await asyncOperation1();
+        console.log('Operation 1 result:', result1);
+        
+        const result2 = await asyncOperation2(result1);
+        console.log('Operation 2 result:', result2);
+        
+        const result3 = await asyncOperation3(result2);
+        console.log('Operation 3 result:', result3);
+        
+        return result3;
+    } catch (error) {
+        console.error('Error during operations:', error);
+    }
+}
+
+// Example asynchronous operations
+function asyncOperation1() {
+    return new Promise(resolve => setTimeout(() => resolve('Result 1'), 1000));
+}
+
+function asyncOperation2(input) {
+    return new Promise(resolve => setTimeout(() => resolve(input + ' + Result 2'), 1000));
+}
+
+function asyncOperation3(input) {
+    return new Promise(resolve => setTimeout(() => resolve(input + ' + Result 3'), 1000));
+}
+
+// Example usage:
+performAsyncOperations().then(finalResult => console.log('Final result:', finalResult));
