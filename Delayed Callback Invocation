@@ -1,0 +1,8 @@
+function delayedCallback(callback) {
+    setTimeout(callback, 2000);
+}
+
+// Example usage:
+delayedCallback(() => {
+    console.log('Callback invoked after 2 seconds');
+});
